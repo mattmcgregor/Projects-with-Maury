@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`UserID`, `Username`, `Password`, `EmailAddress`) VALUES
-(23, 'dmsalsman@alaska.edu', '098f6bcd4621d373cade4e832627b4f6', 'dmsalsman@alaska.edu');
+(23, 'test@alaska.edu', '098f6bcd4621d373cade4e832627b4f6', 'test@alaska.edu');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
