@@ -21,6 +21,9 @@ if(!empty($_SESSION['LoggedIn']) && !empty($_SESSION['Username']))
     <ul>
         <li><a href="logout.php">Logout.</a></li>
     </ul>
+    <ul>
+        <li><a href="submit_file.html">Submit proposal.</a></li>
+    </ul>
     
     <?php
 }

@@ -31,14 +31,6 @@ if(!empty($_POST['email']) && !empty($_POST['password']))
         	echo "<h1>Success</h1>";
         	echo "<p>Your account was successfully created. Please <a href=\"index.php\">click here to login</a>.</p>";
             echo "<p>We are now redirecting you to the member area.</p>";
-
-            $subject = "Successfully register in OURS Grant Proposal Management system.";
-            $message = "Hello! This is a simple email message.";
-            $from = "OURS@alaska.edu";
-            $headers = "From:" . $from;
-            mail($email,$subject,$message,$headers);
-            echo "Mail Sent.";
-
         }
         else
         {
