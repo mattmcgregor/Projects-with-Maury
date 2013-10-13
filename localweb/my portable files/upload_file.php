@@ -3,14 +3,19 @@
 
 if(!empty($_SESSION['LoggedIn']) && !empty($_SESSION['Username']))
 {
-	  $checkuserid = $db->prepare("SELECT UserID FROM users WHERE Username =?");
+	  $checkuserid = $db->prepare("SELECT UserID, Permissions FROM users WHERE Username =?");
 		$username = ($_SESSION['Username']);
 		$checkuserid->execute(array($username));
 		
 		$results = $checkuserid->fetch(PDO::FETCH_NUM);
 		$uid = $results[0];
-			echo "You're user id is " . $results[0] . "<br>";	
-			
+		$permissions = $results[1];
+		echo "UID\t" . $uid . "\tPermissions\t". $permissions . "<br>";
+	if($permissions != 0)
+	{
+		echo "We're sorry, but only students can submit proposals.<br>";
+		echo "<a href=\"index.php\">Click here to return to member's area.</a>." . "<br>";
+	}else
   if ($_FILES["file"]["error"] > 0)
     {
     echo "Return Code: " . $_FILES["file"]["error"] . "<br>";

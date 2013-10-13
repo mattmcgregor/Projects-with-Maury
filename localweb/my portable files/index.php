@@ -13,19 +13,50 @@ credits to Tom Cameron for a great tutorial-->
 <?php
 if(!empty($_SESSION['LoggedIn']) && !empty($_SESSION['Username']))
 {
-	 ?>
+	?><h1>Member Area</h1>
+  	 <p>Thanks for logging in! You are <b><?=$_SESSION['Username']?><b> and your email address is <b><?=$_SESSION['EmailAddress']?></b>.</p><br />
+    <?php
+	$checkuserid = $db->prepare("SELECT UserID, Permissions FROM users WHERE Username =?");
+		$username = ($_SESSION['Username']);
+		$checkuserid->execute(array($username));
+		
+		$results = $checkuserid->fetch(PDO::FETCH_NUM);
+		$uid = $results[0];
+		$permissions = $results[1];
+		
+		if($permissions == 0) {  
+		 ?>
     
-    <h1>Member Area</h1>
-  	 <p>Thanks for logging in! You are <b><?=$_SESSION['Username']?><b> and your email address is <b><?=$_SESSION['EmailAddress']?></b>.</p>
-    
-    <ul>
-        <li><a href="logout.php">Logout.</a></li>
-    </ul>
     <ul>
         <li><a href="submit_file.html">Submit proposal.</a></li>
     </ul>
-    
     <?php
+			echo "<h2>Your proposals</h2>";
+			$getassociatedfiles = $db->prepare("SELECT * FROM files WHERE UserID=?");
+			$getassociatedfiles->execute(array($uid));
+			while($results = $getassociatedfiles->fetch(PDO::FETCH_ASSOC)){
+			echo "<ul><li>";
+				echo "Name:\t".$results["Name"]."<br>";
+				echo "File:\t"."<a href=download.php?id=".$results["ID"].">Download</a>"."<br>";
+				echo "Submitted:\t".$results["Uploaded"]."<br>";
+				
+			echo "</li></ul>";
+			}
+		}elseif($permissions == 1) {
+				echo "<h2>Your proposals to review</h2>";
+			$getassociatedfiles = $db->prepare("SELECT * FROM review WHERE ReviewerID=?");
+			$getassociatedfiles->execute(array($uid));
+			while($results = $getassociatedfiles->fetch(PDO::FETCH_ASSOC)){
+			echo "<ul><li>";
+				echo "File:\t"."<a href=download.php?id=".$results["FileProposalID"].">Download</a>"."<br>";	
+			echo "</li></ul>";
+			}
+		}
+		?>
+       <br /> 
+    <ul>
+        <li><a href="logout.php">Logout.</a></li>
+    </ul><?php
 }
 elseif(!empty($_POST['username']) && !empty($_POST['password']))
 {
