@@ -28,7 +28,7 @@ if(!empty($_SESSION['LoggedIn']) && !empty($_SESSION['Username']))
 		 ?>
 
     <ul>
-        <li><a href="submit_file.html">Submit proposal.</a></li>
+        <li><a href="submit_file.php">Submit proposal.</a></li>
     </ul>
     <?php
 			echo "<h2>Your proposals</h2>";
