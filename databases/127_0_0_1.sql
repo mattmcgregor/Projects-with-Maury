@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 13, 2013 at 06:34 AM
+-- Generation Time: Oct 29, 2013 at 04:46 AM
 -- Server version: 5.6.11-log
 -- PHP Version: 5.5.0
 
@@ -35,20 +35,16 @@ CREATE TABLE IF NOT EXISTS `files` (
   `Uploaded` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `UserID` int(11) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=24 ;
 
 --
 -- Dumping data for table `files`
 --
 
 INSERT INTO `files` (`ID`, `Name`, `Path`, `Uploaded`, `UserID`) VALUES
-(0000000004, 'en-US-3-0.bdic', 'upload/en-US-3-0.bdic', '2013-10-12 19:08:18', 25),
-(0000000005, 'en-US-3-0 - Copy1.bdic', 'upload/en-US-3-0 - Copy1.bdic', '2013-10-12 19:08:33', 25),
-(0000000006, 'en-US-3-0 - Copy1 - Copy - Copy.bdic', 'upload/en-US-3-0 - Copy1 - Copy - Copy.bdic', '2013-10-12 19:24:23', 25),
-(0000000007, 'en-US-3-0 - Copy1 - Copy - Copy - Copy.bdic', 'upload/en-US-3-0 - Copy1 - Copy - Copy - Copy.bdic', '2013-10-12 19:25:09', 25),
-(0000000008, 'en-US-3-0 - Copy1 - Copy - Copy - Copy - Copy.bdic', 'upload/en-US-3-0 - Copy1 - Copy - Copy - Copy - Copy.bdic', '2013-10-12 19:28:03', 24),
-(0000000009, 'en-US-3-0 - Copy1 - Copy.bdic', 'upload/en-US-3-0 - Copy1 - Copy.bdic', '2013-10-12 19:29:57', 24),
-(0000000010, '127_0_0_1.sql', 'upload/127_0_0_1.sql', '2013-10-12 20:13:33', 24);
+(0000000021, 'MinecraftLog.txt', 'upload/MinecraftLog.txt', '2013-10-28 19:39:44', 24),
+(0000000022, 'MinecraftLog.txt', 'upload/MinecraftLog.txt', '2013-10-28 19:39:44', 24),
+(0000000023, 'MinecraftLog - Copy - Copy.txt', 'upload/MinecraftLog - Copy - Copy.txt', '2013-10-28 19:43:49', 24);
 
 -- --------------------------------------------------------
 
@@ -76,6 +72,13 @@ CREATE TABLE IF NOT EXISTS `proposal` (
   `FileID` int(11) NOT NULL,
   PRIMARY KEY (`StudentID`,`FileID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `proposal`
+--
+
+INSERT INTO `proposal` (`StudentID`, `FileID`) VALUES
+(24, 23);
 
 -- --------------------------------------------------------
 
@@ -118,6 +121,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`UserID`, `Username`, `Password`, `EmailAddress`, `Permissions`) VALUES
+(1, 'admin@test.com', 'admin', 'admin@test.com', 2),
 (23, 'test@alaska.edu', '098f6bcd4621d373cade4e832627b4f6', 'test@alaska.edu', 0),
 (24, 'test@test.com', '098f6bcd4621d373cade4e832627b4f6', 'test@test.com', 0),
 (25, 'test2@test.com', 'ad0234829205b9033196ba818f7a872b', 'test2@test.com', 1);

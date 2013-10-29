@@ -1,0 +1,11 @@
+Loading jars...
+Added URL to classpath: file:/C:/Users/dmsalsman/Downloads/Ultimate/instMods/liteloader.zip
+Added URL to classpath: file:/C:/Users/dmsalsman/Downloads/Ultimate/instMods/MinecraftForge.zip
+Added URL to classpath: file:/C:/Users/dmsalsman/Downloads/Ultimate/minecraft/bin/minecraft.jar
+Added URL to classpath: file:/C:/Users/dmsalsman/Downloads/Ultimate/minecraft/bin/lwjgl.jar
+Added URL to classpath: file:/C:/Users/dmsalsman/Downloads/Ultimate/minecraft/bin/lwjgl_util.jar
+Added URL to classpath: file:/C:/Users/dmsalsman/Downloads/Ultimate/minecraft/bin/jinput.jar
+Loading natives...
+Natives loaded...
+Loading minecraft class
+mc = class net.minecraft.client.Minecraft

@@ -44,17 +44,43 @@ if(!empty($_SESSION['LoggedIn']) && !empty($_SESSION['Username']))
       {
       move_uploaded_file($_FILES["file"]["tmp_name"],
       "upload/" . $_FILES["file"]["name"]);
-      echo "Stored in: " . "upload/" . $_FILES["file"]["name"] . "<br>";
-	  echo "<a href=\"index.php\">Click here to return to member's area.</a>." . "<br>";
-	  
-	  $path = ("upload/" . $_FILES["file"]["name"]);
+
+
+      	  $path = ("upload/" . $_FILES["file"]["name"]);
 	  $file = $_FILES["file"]["name"];
 	  
 	  $addfiletotable = $db->prepare("INSERT INTO files(Name, Path, UserID) VALUES (:file,:path,:uid);");
       $addfiletotable->execute(array(':file' => $file, ':path' => $path, ':uid' => $uid));
 	  $results = $addfiletotable->fetch(PDO::FETCH_NUM);
-	  echo $results[0] . "<br>";
 	  
+	  /*$getfileid = $db->prepare("SELECT ID from files WHERE Name = :file AND Path = :path AND UserID = :uid");
+	  $addfiletotable->execute(array(':file' => $file, ':path' => $path, ':uid' => $uid));
+	  $results = $addfiletotable->fetch(PDO::FETCH_ASSOC);  
+	  echo $results["ID"] . "<br>";*/
+
+	        $fileid = $db->prepare("SELECT * FROM files WHERE :name = Name");
+      $fileid->execute(array(':name' => $_FILES["file"]["name"]));
+      $results2 = $fileid->fetch(PDO::FETCH_ASSOC);
+      $fid = $results2["ID"];
+   	 echo $fid;
+      $newtry = $db->prepare("INSERT INTO proposal (StudentID, FileID) VALUES (?, ?)");
+      $newtry->bindParam(1, $uid);
+      $newtry->bindParam(2, $fid);
+      $newtry->execute();
+      $hold = "SELECT * FROM files WHERE $file = Name";
+      $newtry->bindParam(2, $hold);
+      /*$addfiletotable = $db->prepare("INSERT INTO review(StudentID, FileProposalID) SELECT files.UserID, files.ID FROM files WHERE Path = $Path");
+      $addfiletotable->execute()*/
+
+
+      echo $results[0] . "<br>";
+
+	  
+
+      echo "Stored in: " . "upload/" . $_FILES["file"]["name"] . "<br>";
+	  echo "<a href=\"index.php\">Click here to return to member's area.</a>." . "<br>";
+	  
+
 	  }
    	}
 }else {
