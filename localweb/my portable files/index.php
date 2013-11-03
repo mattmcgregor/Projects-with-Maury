@@ -14,7 +14,7 @@ credits to Tom Cameron for a great tutorial-->
 if(!empty($_SESSION['LoggedIn']) && !empty($_SESSION['Username']))
 {
 	?><h1>Member Area</h1>
-  	 <p>Thanks for logging in! You are <b><?=$_SESSION['Username']?><b> and your email address is <b><?=$_SESSION['EmailAddress']?></b>.</p><br />
+  	 <p>Thanks for logging in! You are <b><?=$_SESSION['firstName']?><b> and your email address is <b><?=$_SESSION['EmailAddress']?></b>.</p><br />
     <?php
 	$checkuserid = $db->prepare("SELECT UserID, Permissions FROM users WHERE Username =?");
 		$username = ($_SESSION['Username']);
@@ -79,8 +79,8 @@ if(!empty($_SESSION['LoggedIn']) && !empty($_SESSION['Username']))
 	            		echo "</ul>";
 	            	echo "</li></ul>";
 	            }
- 			}	
-		
+ 			}
+
 		?>
        <br />
     <ul>
@@ -98,9 +98,11 @@ elseif(!empty($_POST['username']) && !empty($_POST['password']))
     {
     	 $row = $checklogin->fetch(PDO::FETCH_ASSOC);
         $email = $row['EmailAddress'];
+        $firstName = $row['firstName'];
 
         $_SESSION['Username'] = $username;
         $_SESSION['EmailAddress'] = $email;
+        $_SESSION['firstName'] = $firstName;
         $_SESSION['LoggedIn'] = 1;
 
     	 echo "<h1>Success</h1>";
