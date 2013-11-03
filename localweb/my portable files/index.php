@@ -68,13 +68,13 @@ if(!empty($_SESSION['LoggedIn']) && !empty($_SESSION['Username']))
 			        $getreviewers->execute(array(":fid"=>$results["FileID"], ":uid"=>$rowInFileTable["UserID"]));
 			          echo "<ul><li>";
 			            echo "Proposal:\t"."<a href=download.php?id=".$results["FileID"].">".$rowInFileTable["Name"]."</a><br>";
-			            echo "Submitted By:\t".$rowInStudentTable["Username"]."<br>";
+			            echo "Submitted By:\t".$rowInStudentTable["firstName"]." ".$rowInStudentTable["lastName"]."<br>";
 			            echo "Reviewers: <ul>";
 			            while($rowInReviewTable = $getreviewers->fetch(PDO::FETCH_ASSOC)) {
 			              $getReviewerAsUser = $db->prepare("SELECT * FROM users WHERE UserID = :uid");
 			              $getReviewerAsUser->execute(array(":uid"=>$rowInReviewTable["ReviewerID"]));
 			              $reviewerAsUser = $getReviewerAsUser->fetch(PDO::FETCH_ASSOC);
-			              echo "<li>".$reviewerAsUser["Username"]."</br></li>";
+			              echo "<li>".$reviewerAsUser["firstName"]." ".$reviewerAsUser["lastName"]."</br></li>";
 			    		}
 	            		echo "</ul>";
 	            	echo "</li></ul>";
