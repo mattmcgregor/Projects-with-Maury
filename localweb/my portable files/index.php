@@ -53,7 +53,8 @@ if(!empty($_SESSION['LoggedIn']) && !empty($_SESSION['Username']))
 			}
 		}elseif($permissions == 2) {
 			echo "<h2>OH GOD ITS THE USER.  Here are the unassigned files.</h2>";
-
+			echo "<h2> Users </h2>";
+			echo '<a href="updateusers.php">Modify user permissions.</a></br>';
        		echo"<h2> Proposals </h2>";
 		    	$getproposals = $db->prepare("SELECT * FROM proposal");
 		  		$getproposals->execute();

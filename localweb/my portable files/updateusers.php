@@ -7,6 +7,21 @@
 <body>
 <div id="main">
 <?php
+if(!empty($_SESSION['LoggedIn']) && !empty($_SESSION['Username']))
+{
+    $checkuserid = $db->prepare("SELECT UserID, Permissions FROM users WHERE Username =?");
+    $username = ($_SESSION['Username']);
+    $checkuserid->execute(array($username));
+    
+    $results = $checkuserid->fetch(PDO::FETCH_NUM);
+    $uid = $results[0];
+    $permissions = $results[1];
+    //echo "UID\t" . $uid . "\tPermissions\t". $permissions . "<br>";
+  if($permissions != 2)
+  {
+    echo "We're sorry, but you do not have permission to access this page.<br>";
+    echo "<a href=\"index.php\">Click here to return to member's area.</a>" . "<br>";
+  }else{
 echo"<h2> Users </h2>";
 header( 'Cache-Control: no-store, no-cache, must-revalidate' ); 
 header( 'Cache-Control: post-check=0, pre-check=0', false ); 
@@ -78,6 +93,10 @@ header( 'Pragma: no-cache' );
               echo "File:\t"."<a href=download.php?id=".$results["FileProposalID"].">Download</a>"."<br>";
       echo "</li></ul>";
       }*/
+    }}else {
+  echo "Unauthorized access. You must be logged in to view this page. Please <a href=\"index.php\">click here to login</a>.";
+  
+}
 ?>
 </div>
 </body>
