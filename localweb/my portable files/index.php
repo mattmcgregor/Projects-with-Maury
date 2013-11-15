@@ -47,40 +47,23 @@ if(!empty($_SESSION['LoggedIn']) && !empty($_SESSION['Username']))
 			$getassociatedfiles = $db->prepare("SELECT * FROM review WHERE ReviewerID=?");
 			$getassociatedfiles->execute(array($uid));
 			while($results = $getassociatedfiles->fetch(PDO::FETCH_ASSOC)){
-			echo "<ul><li>";
+				echo "<ul><li>";
 				echo "File:\t"."<a href=download.php?id=".$results["FileProposalID"].">Download</a>"."<br>";
-			echo "</li></ul>";
+				echo "</li></ul>";
 			}
 		}elseif($permissions == 2) {
-			echo "<h2>OH GOD ITS THE USER.  Here are the unassigned files.</h2>";
+			echo "<h2>Welcome, almighty User.</h2>";
 			echo "<h2> Users </h2>";
-			echo '<a href="updateusers.php">Modify user permissions.</a></br>';
+			echo "<ul><li>";
+				echo '<a href="updateusers.php">Modify user permissions.</a></br>';
+			echo "</li></ul>";
        		echo"<h2> Proposals </h2>";
-		    	$getproposals = $db->prepare("SELECT * FROM proposal");
-		  		$getproposals->execute();
-				while($results = $getproposals->fetch(PDO::FETCH_ASSOC)){
-			        $getrespectivefile = $db->prepare("SELECT * FROM files WHERE ID = :fid");
-			        $getrespectivefile->execute(array(":fid"=>$results["FileID"]));
-			        $rowInFileTable = $getrespectivefile->fetch(PDO::FETCH_ASSOC);
-			        $getstudentwhosubmitted = $db->prepare("SELECT * FROM users WHERE UserID = :uid");
-			        $getstudentwhosubmitted->execute(array(":uid"=>$rowInFileTable["UserID"]));
-			        $rowInStudentTable = $getstudentwhosubmitted->fetch(PDO::FETCH_ASSOC);
-			        $getreviewers = $db->prepare("SELECT * FROM review WHERE FileProposalID = :fid AND StudentID = :uid");
-			        $getreviewers->execute(array(":fid"=>$results["FileID"], ":uid"=>$rowInFileTable["UserID"]));
-			          echo "<ul><li>";
-			            echo "Proposal:\t"."<a href=download.php?id=".$results["FileID"].">".$rowInFileTable["Name"]."</a><br>";
-			            echo "Submitted By:\t".$rowInStudentTable["firstName"]." ".$rowInStudentTable["lastName"]."<br>";
-			            echo "Reviewers: <ul>";
-			            while($rowInReviewTable = $getreviewers->fetch(PDO::FETCH_ASSOC)) {
-			              $getReviewerAsUser = $db->prepare("SELECT * FROM users WHERE UserID = :uid");
-			              $getReviewerAsUser->execute(array(":uid"=>$rowInReviewTable["ReviewerID"]));
-			              $reviewerAsUser = $getReviewerAsUser->fetch(PDO::FETCH_ASSOC);
-			              echo "<li>".$reviewerAsUser["firstName"]." ".$reviewerAsUser["lastName"]."</br></li>";
-			    		}
-	            		echo "</ul>";
-	            	echo "</li></ul>";
-	            }
- 			}
+       		echo "<ul><li>";
+			echo '<a href="viewproposals.php">View Proposals.</a></br>';
+			echo "</li><li>";
+			echo '<a href="updatereviewers.php">Modify/Assign Proposal Reviewers.</a></br>';
+			echo "</li></ul>";
+		}
 
 		?>
        <br />
@@ -110,7 +93,7 @@ elseif(!empty($_POST['username']) && !empty($_POST['password']))
         echo "<p>We are now redirecting you to the member area.</p>";
         echo "<meta http-equiv='refresh' content='=2;index.php' />";
 
-        header('Refresh: 3; URL=index.php');
+        header('Refresh: 1; URL=index.php');
     }
     else
     {

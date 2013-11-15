@@ -37,7 +37,7 @@ if(!empty($_SESSION['LoggedIn']) && !empty($_SESSION['Username']))
     if (file_exists("upload/" . $_FILES["file"]["name"]))
       {		
       echo $_FILES["file"]["name"] . " already exists. " . "<br>";
-	  echo "<a href=\"submit_file.html\">Click here to return to try again.</a>." . "<br>";
+	  echo "<a href=\"submit_file.php\">Click here to return to try again.</a>." . "<br>";
 	  echo "<a href=\"index.php\">Click here to return to member's area.</a>." . "<br>";
       }
     else
