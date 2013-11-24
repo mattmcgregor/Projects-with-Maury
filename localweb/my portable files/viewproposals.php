@@ -45,6 +45,7 @@ echo "<h2>Proposals</h2>";
 			          echo "<ul><li>";
 			            echo "Proposal:\t"."<a href=download.php?id=".$results["FileID"].">".$rowInFileTable["Name"]."</a><br>";
 			            echo "Submitted By:\t".$rowInStudentTable["firstName"]." ".$rowInStudentTable["lastName"]."<br>";
+		            	echo "Status:\t".$propStatus[$results["Status"]]."</br>";
 			            echo "Reviewers: <ul>";
 			            while($rowInReviewTable = $getreviewers->fetch(PDO::FETCH_ASSOC)) {
 			              $getReviewerAsUser = $db->prepare("SELECT * FROM users WHERE UserID = :uid");

@@ -117,6 +117,7 @@
             echo "<ul><li>";
               echo "Proposal:\t"."<a href=download.php?id=".$proposalFileID.">".$rowInFileTable["Name"]."</a><br>";
               echo "Submitted By:\t".$rowInStudentTable["firstName"]." ".$rowInStudentTable["lastName"]."<br>";
+              echo "Status:\t".$propStatus[$results["Status"]]."</br>";
               echo "Reviewers: <ul>";
               $i = 1;
               while($rowInReviewTable = $getreviewers->fetch(PDO::FETCH_ASSOC)) {

@@ -7,4 +7,10 @@ $dbuser = "root"; // the username that you created, or were given, to access you
 $dbpass = ""; // the password that you created, or were given, to access your database
 $db = new PDO('mysql:host='.$dbhost.';dbname='.$dbname.';charset=utf8', $dbuser, $dbpass);
 
+$propStatus = array();
+$propQuerry = $db->prepare("SELECT * FROM propStatus");
+$propQuerry->execute();
+while($result = $propQuerry->fetch(PDO::FETCH_ASSOC)){
+	$propStatus[$result["ID"]] = $result["StatusText"];
+}
 ?>
