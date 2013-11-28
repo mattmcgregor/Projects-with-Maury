@@ -1,0 +1,9 @@
+HOW TO BACKUP YOUR DATABASES
+- open PhpMyAdmin
+- select the tab "Export"
+- select "Custom - display all possible options"
+- select the databases you want to backup (hold 'Ctrl')
+- 'Output' section : tick "Save on server in the directory savedir/"
+- 'Output' section : TIP > use the date as "File name template" (i.e. '20130430')
+- 'Output' section : untick "use this for future exports"
+- Keep the other default parameters and click on "Go"

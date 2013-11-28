@@ -1,0 +1,37 @@
+Required pages:
+
+All users:
+Login		  2
+Create account    3
+
+Reset password    2
+
+Info              1	
+Grants & Awards   1
+
+Student:
+Submit proposal   1
+Check status      1 
+
+Faculty Reviewers:
+View assigned proposals   1
+Submit proposal review    1   
+
+Admin:
+View proposals 
+	(filters: all, unassigned, assigned, assigned to:, reviewed, unreviewed, accepted, unaccepted) 3
+Accept/Deny proposal      1
+Publish Grants            2
+
+Features:
+Database         5
+File upload      5
+Set Status	 1
+
+Additional Features:
+E-mail support
+	Status Updates              2
+	Proposal Spoiling           2
+	Reminder Emails             2
+	Review By/Approve By Date   2
+	

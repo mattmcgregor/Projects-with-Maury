@@ -1,0 +1,33 @@
+<config>
+<setting name="currentResolution" value="0"/>
+<setting name="useFullscreen" value="0"/>
+<setting name="smoothScaling" value="1"/>
+<setting name="SFXVolume" value="4"/>
+<setting name="MusicVolume" value="5"/>
+<setting name="AutoLoot" value="0"/>
+<setting name="AutoClick" value="0"/>
+<setting name="WASDActive" value="0"/>
+<setting name="completedATutorial" value="0"/>
+<keybinding pos="0" value="119"/>
+<keybinding pos="1" value="115"/>
+<keybinding pos="2" value="97"/>
+<keybinding pos="3" value="100"/>
+<keybinding pos="4" value="32"/>
+<keybinding pos="5" value="107"/>
+<keybinding pos="6" value="105"/>
+<keybinding pos="7" value="99"/>
+<keybinding pos="8" value="109"/>
+<keybinding pos="9" value="113"/>
+<autoloot pos="0" value="0"/>
+<autoloot pos="1" value="0"/>
+<autoloot pos="2" value="0"/>
+<autoloot pos="3" value="0"/>
+<autoloot pos="4" value="0"/>
+<autoloot pos="5" value="0"/>
+<autoloot pos="6" value="0"/>
+<autoloot pos="7" value="0"/>
+<autoloot pos="8" value="0"/>
+<autoloot pos="9" value="0"/>
+<autoloot pos="10" value="0"/>
+<autoloot pos="11" value="0"/>
+</config>

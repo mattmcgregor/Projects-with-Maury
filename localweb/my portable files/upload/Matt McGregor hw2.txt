@@ -1,0 +1,35 @@
+q1
+	while (s.isempty() == false){
+		s1.push(s.pop());
+	while (s1.isempty() == false){
+		s2.push(s1.pop());}
+	while (s2.isempty() == false){
+		s.push(s2.pop());}
+
+q2
+
+	while (s.isempty() == false)
+		q.enqueue(s.pop());
+	while (q.isempty() == false)
+		s.push(q.dequeue());
+		
+q3
+				6
+			       / \
+			      5	  4
+			     /   / \
+			    3   2   1
+				
+				
+				
+	inorder
+	356241
+	
+	postorder
+	356214
+	
+	preorder
+	653421
+	
+	level order
+	654321

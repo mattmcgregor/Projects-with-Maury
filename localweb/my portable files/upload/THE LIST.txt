@@ -1,0 +1,23 @@
+FOR NEXT ITERATION
+
+Fix file upload
+//Eat it!
+
+
+Superuser(Admin) make reviewers
+//Done!
+
+Superuser assign reviews
+
+
+Have People add names in account creation also student ID
+//People can now add names and id numbers in registration.
+//users table changed, rows added firstName char(20) lastName char(20) studentID char(8)
+// 11/2
+
+Submit reviews.
+
+
+Little nitpicky things to improve: <3 Sam
+
+Output files reverse chronological
