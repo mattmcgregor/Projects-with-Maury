@@ -28,12 +28,22 @@
     else
     {
         if(isset($_POST["Submit"]) && isset($_POST["fileid"]) && isset($_POST["studentid"])){
+          
+          if($_POST["decision"] == "Accept"){
+            $decision = 4;
+          }else{$decision = 5;}
+
           $comment = $_POST["comment"];
           $studentid = $_POST["studentid"];
           $fileid = $_POST["fileid"];
-          $updateQuerry = $db->prepare("UPDATE `proposal` SET Status=5,AdminComments = :comment WHERE StudentID = :sid AND FileID = :fid");
-          $updateQuerry->execute(array(":fid" => $fileid, ":sid" => $studentid, ":comment" => $comment));
-          echo "Proposal sucessfully rejected.</br>";
+          $updateQuerry = $db->prepare("UPDATE `proposal` SET Status= :decision, AdminComments = :comment WHERE StudentID = :sid AND FileID = :fid");
+          $updateQuerry->execute(array(":fid" => $fileid, ":sid" => $studentid, ":comment" => $comment, ":decision" => $decision));
+          echo "Proposal sucessfully ";
+          if($decision == 4){
+            echo "accepted.</br>";
+          }else{
+            echo "rejected.</br>";
+          }
           echo "Click <a href=\"viewproposals.php\">here</a> to return to the proposal list.";
         }elseif(isset($_GET["fileid"]) && isset($_GET["studentid"])){
         $fileid = $_GET["fileid"];
@@ -67,13 +77,37 @@
             $_POST["submitted"] = "true";
         ?>
         </br>
-        <form method="post" action="reject.php" name="rejectform" id="rejectform" onsubmit="return checkForm(this); return false;">
+        <form method="post" action="finalreview.php" name="rejectform" id="rejectform" onsubmit="return checkForm(this); return false;">
         <fieldset>
         <textarea name="comment" rows="4" cols="50">Insert comment here.</textarea></br>
+        <input type="radio" name="decision" value="Accept" id="Accept"> Accept 
+        <input type="radio" name="decision" value="Reject" id="Reject"> Reject </br>
         <input type="submit" name="Submit" value="Submit" id="Submit" onclick="">
+        <script type="text/javascript">
+          var accept = document.getElementById("Accept");
+          var reject = document.getElementById("Reject");
+          var sendbtn = document.getElementById('Submit');
+
+          sendbtn.disabled = true;
+
+          accept.onchange = function(){
+            if(this.checked || reject.checked){
+              sendbtn.disabled = false;
+            } else {
+              sendbtn.disabled = true;
+            }
+          }
+
+          reject.onchange = function(){
+              if(this.checked || accept.checked){
+                  sendbtn.disabled = false;
+              } else {
+              sendbtn.disabled = true;
+            }
+          }
+        </script>
         <input type="hidden" name="studentid" value=<?php echo $studentid; ?> onclick="">
         <input type="hidden" name="fileid" value=<?php echo $fileid; ?>  onclick="">
-
         <input type="button" name="cancel" value="Cancel" onclick="location.href='viewproposals.php';"></fieldset></form><?php
       }
       else 
