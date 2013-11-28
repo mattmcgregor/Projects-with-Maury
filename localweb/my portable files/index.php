@@ -49,6 +49,7 @@ if(!empty($_SESSION['LoggedIn']) && !empty($_SESSION['Username']))
 			while($results = $getassociatedfiles->fetch(PDO::FETCH_ASSOC)){
 				echo "<ul><li>";
 				echo "File:\t"."<a href=download.php?id=".$results["FileProposalID"].">Download</a>"."<br>";
+				echo "<a href=submit_review.php?id=".$results["FileProposalID"]."&sid=".$results["StudentID"].">Upload Review</a>"."<br>";
 				echo "</li></ul>";
 			}
 		}elseif($permissions == 2) {

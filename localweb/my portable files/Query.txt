@@ -1,0 +1,8 @@
+Query
+
+SELECT FileID, Count( FileID )
+FROM proposal
+LEFT JOIN review ON FileID = FileProposalID
+AND proposal.StudentID = review.StudentID
+GROUP BY FileID
+LIMIT 0 , 30
