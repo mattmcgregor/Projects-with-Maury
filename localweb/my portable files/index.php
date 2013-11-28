@@ -31,38 +31,64 @@ if(!empty($_SESSION['LoggedIn']) && !empty($_SESSION['Username']))
         <li><a href="submit_file.php">Submit proposal.</a></li>
     </ul>
     <?php
-			echo "<h2>Your proposals</h2>";
-			$getassociatedfiles = $db->prepare("SELECT * FROM files WHERE UserID=?");
+			echo "</br><h2>Your Proposals</h2></br>";
+			$getassociatedfiles = $db->prepare("SELECT * FROM proposal WHERE StudentID=?");
 			$getassociatedfiles->execute(array($uid));
 			while($results = $getassociatedfiles->fetch(PDO::FETCH_ASSOC)){
-			echo "<ul><li>";
-				echo "Name:\t".$results["Name"]."<br>";
-				echo "File:\t"."<a href=download.php?id=".$results["ID"].">Download</a>"."<br>";
-				echo "Submitted:\t".$results["Uploaded"]."<br>";
-
-			echo "</li></ul>";
+				$getFile = $db->prepare("SELECT * FROM files WHERE ID = :fid");
+				$getFile->execute(array(":fid" => $results["FileID"]));
+				$file = $getFile->fetch(PDO::FETCH_ASSOC);
+				echo "<ul><li>";
+				echo "Proposal:\t"."<a href=download.php?id=".$results["FileID"].">".$file["Name"]."</a>"."<br>";
+				echo "Proposal Submitted:\t".$file["Uploaded"]."<br>";
+				echo "</li></ul></br>";
 			}
 		}elseif($permissions == 1) {
-				echo "<h2>Your proposals to review</h2>";
-			$getassociatedfiles = $db->prepare("SELECT * FROM review WHERE ReviewerID=?");
+				echo "</br><h2>Your proposals to review</h2></br>";
+			$getassociatedfiles = $db->prepare("SELECT * FROM review WHERE ReviewerID=? AND FileReviewID = 0");
 			$getassociatedfiles->execute(array($uid));
 			while($results = $getassociatedfiles->fetch(PDO::FETCH_ASSOC)){
+				$getFile = $db->prepare("SELECT * FROM files WHERE ID = :fid");
+				$getFile->execute(array(":fid" => $results["FileProposalID"]));
+				$file = $getFile->fetch(PDO::FETCH_ASSOC);
 				echo "<ul><li>";
-				echo "File:\t"."<a href=download.php?id=".$results["FileProposalID"].">Download</a>"."<br>";
-				echo "<a href=submit_review.php?id=".$results["FileProposalID"]."&sid=".$results["StudentID"].">Upload Review</a>"."<br>";
-				echo "</li></ul>";
+				echo "Proposal:\t"."<a href=download.php?id=".$results["FileProposalID"].">".$file["Name"]."</a>"."<br>";
+				echo "Proposal Submitted:\t".$file["Uploaded"]."<br>";
+				echo "Review: "."<a href=submit_review.php?id=".$results["FileProposalID"]."&sid=".$results["StudentID"].">Upload Review</a>"."<br>";
+				echo "</li></ul></br>";
 			}
+				echo "</br><h2>Your reviewed proposals</h2></br>";
+			$getassociatedfiles = $db->prepare("SELECT * FROM review WHERE ReviewerID=? AND FileReviewID != 0");
+			$getassociatedfiles->execute(array($uid));
+			while($results = $getassociatedfiles->fetch(PDO::FETCH_ASSOC)){
+				$getFile = $db->prepare("SELECT * FROM files WHERE ID = :fid");
+				$getFile->execute(array(":fid" => $results["FileProposalID"]));
+				$file = $getFile->fetch(PDO::FETCH_ASSOC);
+				echo "<ul><li>";
+				echo "Proposal:\t"."<a href=download.php?id=".$results["FileProposalID"].">".$file["Name"]."</a>"."<br>";
+				echo "Proposal Submitted:\t".$file["Uploaded"]."<br>";
+				//echo "<a href=submit_review.php?id=".$results["FileProposalID"]."&sid=".$results["StudentID"].">Upload Review</a>"."<br>";
+				$getFile = $db->prepare("SELECT * FROM files WHERE ID = :fid");
+				$getFile->execute(array(":fid" => $results["FileReviewID"]));
+				$file = $getFile->fetch(PDO::FETCH_ASSOC);
+				echo "Review: <a href=download.php?id=".$file["ID"].">".$file["Name"]."</a></br>";
+				echo "Review Submitted: ".$file["Uploaded"]."</br>";
+				echo "</li></ul></br>";
+			}
+
 		}elseif($permissions == 2) {
 			echo "<h2>Welcome, almighty User.</h2>";
-			echo "<h2> Users </h2>";
+			echo "</br><h2> Users </h2></br>";
 			echo "<ul><li>";
-				echo '<a href="updateusers.php">Modify user permissions.</a></br>';
+				echo '<a href="updateusers.php">Modify User Permissions.</a></br>';
 			echo "</li></ul>";
-       		echo"<h2> Proposals </h2>";
+       		echo"</br><h2> Proposals </h2></br>";
        		echo "<ul><li>";
 			echo '<a href="viewproposals.php">View Proposals.</a></br>';
 			echo "</li><li>";
-			echo '<a href="updatereviewers.php">Modify/Assign Proposal Reviewers.</a></br>';
+			echo '<a href="assignreviewers.php">Assign Proposal Reviewers.</a></br>';
+			echo "</li><li>";
+			echo '<a href="updatereviewers.php">Modify Proposal Reviewers.</a></br>';
 			echo "</li></ul>";
 		}
 
@@ -74,7 +100,7 @@ if(!empty($_SESSION['LoggedIn']) && !empty($_SESSION['Username']))
 }
 elseif(!empty($_POST['username']) && !empty($_POST['password']))
 {
-	 $username = ($_POST['username']);
+	$username = ($_POST['username']);
     $password = md5(($_POST['password']));
 
 	 $checklogin = $db->prepare("SELECT * FROM users WHERE Username =? AND Password =?");

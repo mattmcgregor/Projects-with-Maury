@@ -56,7 +56,7 @@ if(!empty($_POST['email']) && !empty($_POST['password']))
      if($checkusername->rowCount() > 0)
      {
      	echo "<h1>Error</h1>";
-        echo "<p>Sorry, that username is taken. Please go back and try again.</p>";
+        echo "<p>Sorry, that username is taken. Please <a href='register.php'>click here</a> and try again.</p>";
      }
      else
      {
@@ -91,6 +91,8 @@ else
         <label for="lastName">Last Name:</label><input type="text" name="lastName" id="lastName" /><br />
         <label for="studentID">studentID:</label><input type="text" name="studentID" id="studentID" placeholder="Not Required" /><br />
         <input type="submit" name="register" id="register" value="Register" />
+        <input type="button" name="cancel" id="cancel" value="Cancel" onclick="location.href='index.php';"/>
+
 	</fieldset>
 	</form>
 

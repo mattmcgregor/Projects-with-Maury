@@ -28,7 +28,7 @@
     echo "<a href=\"index.php\">Click here to return to member's area.</a>" . "<br>";
   }else{
 
-  echo "<h2> Modify Proposal Reviewers </h2>";
+  echo "</br><h2> Modify Proposal Reviewers </h2></br>";
 
   $reviewers = array();
   $getReviewers = $db->prepare("SELECT * FROM users WHERE permissions = :p");
@@ -137,7 +137,7 @@
                 $i++;
               }
               echo "</ul>";
-              echo "</ul>";
+              echo "</ul></br>";
 
 /*                $getReviewerAsUser = $db->prepare("SELECT * FROM users WHERE UserID = :uid");
                 $getReviewerAsUser->execute(array(":uid"=>$rowInReviewTable["ReviewerID"]));

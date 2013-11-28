@@ -22,7 +22,7 @@ if(!empty($_SESSION['LoggedIn']) && !empty($_SESSION['Username']))
     echo "We're sorry, but you do not have permission to access this page.<br>";
     echo "<a href=\"index.php\">Click here to return to member's area.</a>" . "<br>";
   }else{
-echo"<h2> Users </h2>";
+echo"</br><h2> Users </h2></br>";
 header( 'Cache-Control: no-store, no-cache, must-revalidate' ); 
 header( 'Cache-Control: post-check=0, pre-check=0', false ); 
 header( 'Pragma: no-cache' ); 
@@ -67,7 +67,7 @@ header( 'Pragma: no-cache' );
           //echo "</br><a href='update.php?id=".$results["UserID"]."'>update</a>";
           echo "</br>";
           echo "</ul>";
-         echo "</li></ul>";
+         echo "</li></ul></br>";
       }
       $_POST['update'] = "true";
       ?><input type="submit" name="Update" value="Update" id="Update" onclick="updatePermissions();">
