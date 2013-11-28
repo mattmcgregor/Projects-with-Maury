@@ -144,6 +144,7 @@ else
 	</fieldset>
 	</form>
 
+	<li><a href="info.php">Info</a> <a href="reset_password.php">Password Reset</a></li>
    <?php
 }
 ?>
