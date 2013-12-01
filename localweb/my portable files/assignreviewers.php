@@ -28,7 +28,7 @@
     echo "<a href=\"index.php\">Click here to return to member's area.</a>" . "<br>";
   }else{
 
-  echo "<h2> Modify Proposal Reviewers </h2>";
+  echo "<h2> Assign Reviewers to New Proposals</h2>";
 
   $reviewers = array();
   $getReviewers = $db->prepare("SELECT * FROM users WHERE permissions = :p");
