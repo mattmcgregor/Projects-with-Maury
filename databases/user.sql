@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 01, 2013 at 02:41 AM
+-- Generation Time: Dec 01, 2013 at 02:46 AM
 -- Server version: 5.6.11-log
 -- PHP Version: 5.4.14
 
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `files` (
   `ID` int(10) unsigned zerofill NOT NULL AUTO_INCREMENT,
   `Name` text NOT NULL,
   `Path` text NOT NULL,
-  `Uploaded` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `Uploaded` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `UserID` int(11) NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=33 ;
@@ -40,18 +40,18 @@ CREATE TABLE IF NOT EXISTS `files` (
 --
 
 INSERT INTO `files` (`ID`, `Name`, `Path`, `Uploaded`, `UserID`) VALUES
-(0000000021, 'MinecraftLog.txt', 'upload/MinecraftLog.txt', '2013-10-28 19:39:44', 24),
-(0000000022, 'MinecraftLog.txt', 'upload/MinecraftLog.txt', '2013-10-28 19:39:44', 24),
-(0000000023, 'MinecraftLog - Copy - Copy.txt', 'upload/MinecraftLog - Copy - Copy.txt', '2013-10-28 19:43:49', 24),
-(0000000024, 'test-suite 1', 'upload/test-suite 1', '2013-11-02 18:33:26', 33),
-(0000000025, 'user.sql', 'upload/user.sql', '2013-11-14 16:25:23', 24),
-(0000000026, 'FormsCentralForAcrobat.exe', 'upload/FormsCentralForAcrobat.exe', '2013-11-27 21:29:06', 24),
-(0000000027, 'AssetImportState', 'upload/AssetImportState', '2013-11-27 22:28:34', 25),
-(0000000028, 'AnnotationManager', 'upload/AnnotationManager', '2013-11-27 22:31:18', 25),
-(0000000029, 'EditorUserSettings.asset', 'upload/EditorUserSettings.asset', '2013-11-27 22:31:29', 25),
-(0000000030, 'EditorUserBuildSettings.asset', 'upload/EditorUserBuildSettings.asset', '2013-11-27 22:45:11', 25),
-(0000000031, 'AssetVersioning.db', 'upload/AssetVersioning.db', '2013-11-27 22:50:26', 24),
-(0000000032, 'BuildPlayer.prefs', 'upload/BuildPlayer.prefs', '2013-11-27 22:53:26', 25);
+(0000000021, 'MinecraftLog.txt', 'upload/MinecraftLog.txt', '2013-10-29 03:39:44', 24),
+(0000000022, 'MinecraftLog.txt', 'upload/MinecraftLog.txt', '2013-10-29 03:39:44', 24),
+(0000000023, 'MinecraftLog - Copy - Copy.txt', 'upload/MinecraftLog - Copy - Copy.txt', '2013-10-29 03:43:49', 24),
+(0000000024, 'test-suite 1', 'upload/test-suite 1', '2013-11-03 02:33:26', 33),
+(0000000025, 'user.sql', 'upload/user.sql', '2013-11-15 01:25:23', 24),
+(0000000026, 'FormsCentralForAcrobat.exe', 'upload/FormsCentralForAcrobat.exe', '2013-11-28 06:29:06', 24),
+(0000000027, 'AssetImportState', 'upload/AssetImportState', '2013-11-28 07:28:34', 25),
+(0000000028, 'AnnotationManager', 'upload/AnnotationManager', '2013-11-28 07:31:18', 25),
+(0000000029, 'EditorUserSettings.asset', 'upload/EditorUserSettings.asset', '2013-11-28 07:31:29', 25),
+(0000000030, 'EditorUserBuildSettings.asset', 'upload/EditorUserBuildSettings.asset', '2013-11-28 07:45:11', 25),
+(0000000031, 'AssetVersioning.db', 'upload/AssetVersioning.db', '2013-11-28 07:50:26', 24),
+(0000000032, 'BuildPlayer.prefs', 'upload/BuildPlayer.prefs', '2013-11-28 07:53:26', 25);
 
 -- --------------------------------------------------------
 
