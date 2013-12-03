@@ -60,7 +60,7 @@ else if((empty($_POST["newPassword"]))&&(!empty($_POST["firstName"])) && (!empty
 						<input type="hidden" name="firstName" id="firstName" value=<?php echo $_POST["firstName"]?>>
 						<input type="hidden" name="lastName" id="lastName" value=<?php echo $_POST["lastName"]?>>
 						<input type="hidden" name="StudentID" id="StudentID" value=<?php echo $_POST["StudentID"]?>>
-						<label for="NewPassword">New Password:</label><input type="newPassword" name="newPassword" id="newPassword" /><br />
+						<label for="NewPassword">New Password:</label><input type="password" name="newPassword" id="newPassword" /><br />
 						<input type="submit" name="login" id="login" value="Login" />
 					</fieldset>
 				</form>
